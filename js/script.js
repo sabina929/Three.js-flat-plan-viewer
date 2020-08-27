@@ -81,7 +81,7 @@ function init(){
     
     // Point light 1
     pointLight1 = new THREE.PointLight( 0xffef72, 0 );
-    pointLight1.position.set( 15, 100, 13 );
+    pointLight1.position.set( 15, 200, 13 );
     pointLight1.decay = 2;
     pointLight1.distance = 1000;
     scene1.add( pointLight1 );
@@ -142,7 +142,7 @@ function init(){
     
     // Point light 2
     pointLight2 = new THREE.PointLight( 0xffef72, 0 );
-    pointLight2.position.set( 245, 100, 10 );
+    pointLight2.position.set( 245, 200, 10 );
     pointLight2.decay = 2;
     pointLight2.distance = 1000;
     scene2.add( pointLight2 );
@@ -189,7 +189,7 @@ function init(){
     
     // Directional light 3b
     const directionalLight3b = new THREE.DirectionalLight(0x0e1110, 1, 100)
-    directionalLight3b.position.set(80,100,180)
+    directionalLight3b.position.set(80,200,180)
     directionalLight3b.castShadow = true; 
     // directionalLight3b.mask = 0x000000;
     directionalLight3b.shadow.mapSize.width = 1024; 
@@ -201,7 +201,7 @@ function init(){
     
     // Point light 3
     pointLight3 = new THREE.PointLight( 0xffef72, 0 );
-    pointLight3.position.set(16, 100, 245 );
+    pointLight3.position.set(16, 200, 245 );
     pointLight3.decay = 2;
     pointLight3.distance = 1000;
     scene3.add( pointLight3 );
@@ -369,6 +369,16 @@ function init(){
     // Controls
     var controls = new THREE.OrbitControls( camera, renderer.domElement );
     controls.addEventListener( 'change', render );
+    controls.mouseButtons = {
+        LEFT: THREE.MOUSE.ROTATE,
+        MIDDLE: THREE.MOUSE.DOLLY
+        // RIGHT: THREE.MOUSE.PAN
+    }
+    controls.touches = {
+        ONE: THREE.TOUCH.ROTATE,
+        TWO: THREE.TOUCH.DOLLY_PAN
+    }
+
     controls.update();
 
     window.addEventListener( 'resize', onWindowResize, false );
@@ -387,7 +397,7 @@ function animate(){
     // renderer.render(scene, camera)
 
     requestAnimationFrame(animate);
-
+    // controls.update()
     renderer.autoClear = true;
 
     renderer.render(scene1, camera);
@@ -461,7 +471,6 @@ function onDocumentMouseDown(event) {
     // models.push(model2);
     // models.push(model3);
     // models.push(model4);
-    // console.log(scene1.children);
     // console.log(models);
 
     var scenes = [];
@@ -479,18 +488,12 @@ function onDocumentMouseDown(event) {
     var intersects = raycaster.intersectObjects(scenes, true);
   
   
-    // if (intersects.length > 0) {
-    //   intersects.forEach((intersect) => {
-    //     // intersect.object.material.color.setHex(Math.random() * 0xffffff);
-    //     console.log(intersect)
-    //   });
-    // }
+    
 
     if ( intersects.length > 0 ) {
 
         if ( INTERSECTED != intersects[ 0 ].object ) {
 
-            // if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
             INTERSECTED = intersects[ 0 ].object;
             
@@ -498,7 +501,7 @@ function onDocumentMouseDown(event) {
             // console.log(INTERSECTED.id)
 
             if(INTERSECTED.id === 95 ){
-                pointLight4.intensity = 1.6
+                pointLight4.intensity = 1.5
                 room3Info.style.opacity = 1
                 room3Info.style.transform =  `translate(${x}%,${y}%,${z})`;
                 // room3Info.style.left = `${x}`;
@@ -514,7 +517,7 @@ function onDocumentMouseDown(event) {
                 room4Info.style.opacity = 0
             }
             else if(INTERSECTED.id === 94 ){
-                pointLight3.intensity = 1.6
+                pointLight3.intensity = 1.5
                 room1Info.style.opacity = 1
                 // room1Info.style.top = `${y}`;
                 // room1Info.style.left = `${x}`;
@@ -530,7 +533,7 @@ function onDocumentMouseDown(event) {
                 room4Info.style.opacity = 0
             }
             else if(INTERSECTED.id === 92 ){
-                pointLight1.intensity = 1.6
+                pointLight1.intensity = 1.5
                 room2Info.style.opacity = 1
                 // room2Info.style.top = `${y}`;
                 // room2Info.style.left = `${x}`;
@@ -546,7 +549,7 @@ function onDocumentMouseDown(event) {
                 room4Info.style.opacity = 0
             }
             else if(INTERSECTED.id === 93 ){
-                pointLight2.intensity = 1.6
+                pointLight2.intensity = 1.5
                 room4Info.style.opacity = 1
                 // room4Info.style.top = `${y}`;
                 // room4Info.style.left = `${x}`;
@@ -568,7 +571,6 @@ function onDocumentMouseDown(event) {
 
     } else {
 
-        // if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
         INTERSECTED = null;
 
