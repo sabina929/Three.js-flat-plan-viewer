@@ -27,15 +27,10 @@ let room2Info = document.querySelector('.room2')
 let room3Info = document.querySelector('.room3')
 let room4Info = document.querySelector('.room4')
 
-const canvas = document.querySelector('#c');
 
 
 
 function init(){
-    // container1 = document.querySelector('.scene1');
-    // container2 = document.querySelector('.scene2');
-    // container3 = document.querySelector('.scene3');
-    // container4 = document.querySelector('.scene4');
     container = document.querySelector('.container');
 
     // Scenes
