@@ -10,18 +10,18 @@ let camera;
 let renderer;
 // let model;
 let controls;
+let models = [];
 var model1, model2, model3, model4;
-var pointLight1;
-var pointLight2;
-var pointLight3;
-var pointLight4;
-var spotLight1;
-var spotLight2;
-var spotLight3;
-var spotLight4;
-var raycaster = new THREE.Raycaster();
-var mouse = new THREE.Vector3(), INTERSECTED;
-var models = [];
+let pointLight1;
+let pointLight2;
+let pointLight3;
+let pointLight4;
+let spotLight1;
+let spotLight2;
+let spotLight3;
+let spotLight4;
+let raycaster = new THREE.Raycaster();
+let mouse = new THREE.Vector3(), INTERSECTED;
 let room1Info = document.querySelector('.room1')
 let room2Info = document.querySelector('.room2')
 let room3Info = document.querySelector('.room3')
