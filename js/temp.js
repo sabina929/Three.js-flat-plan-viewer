@@ -21,11 +21,18 @@ var spotLight3;
 var spotLight4;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector3(), INTERSECTED;
+
+let isIntersectedMaterial1Selected =false
+let isIntersectedMaterial2Selected =false
+let isIntersectedMaterial3Selected =false
+let isIntersectedMaterial4Selected =false
 var models = [];
+
 let room1Info = document.querySelector('.room1')
 let room2Info = document.querySelector('.room2')
 let room3Info = document.querySelector('.room3')
 let room4Info = document.querySelector('.room4')
+
 
 const canvas = document.querySelector('#c');
 
@@ -80,7 +87,7 @@ function init(){
     
     
     // Point light 1
-    pointLight1 = new THREE.PointLight( 0xffef72, 0 );
+    pointLight1 = new THREE.PointLight( 0xffef72, 1.6 );
     pointLight1.position.set( 15, 100, 13 );
     pointLight1.decay = 2;
     pointLight1.distance = 1000;
@@ -141,7 +148,7 @@ function init(){
 
     
     // Point light 2
-    pointLight2 = new THREE.PointLight( 0xffef72, 0 );
+    pointLight2 = new THREE.PointLight( 0xffef72, 1.6 );
     pointLight2.position.set( 245, 100, 10 );
     pointLight2.decay = 2;
     pointLight2.distance = 1000;
@@ -200,7 +207,7 @@ function init(){
     
     
     // Point light 3
-    pointLight3 = new THREE.PointLight( 0xffef72, 0 );
+    pointLight3 = new THREE.PointLight( 0xffef72, 1.6 );
     pointLight3.position.set(16, 100, 245 );
     pointLight3.decay = 2;
     pointLight3.distance = 1000;
@@ -259,7 +266,7 @@ function init(){
     
     
     // Point light 4
-    pointLight4 = new THREE.PointLight( 0xffef72, 0 );
+    pointLight4 = new THREE.PointLight( 0xffef72, 1.6 );
     pointLight4.position.set( 245, 100, 245 );
     pointLight4.decay = 2;
     pointLight4.distance = 1000;
@@ -334,6 +341,11 @@ function init(){
         model4.position.set(240, 50, 240)
         model4.scale.set(.6, .6, .6)
 
+        model1.userData.name = "model1"
+        model2.userData.name = "model2"
+        model3.userData.name = "model3"
+        model4.userData.name = "model4"
+        // console.log(model1)
 
         model1.castShadow = true;
         model1.receiveShadow = true
@@ -349,11 +361,6 @@ function init(){
         //       o.material.emissive = new THREE.Color( 0x00ffff );
         //     }
         //   });
-
-        models.push(model1);
-        models.push(model2);
-        models.push(model3);
-        models.push(model4);
         
         scene1.add(model1);
         scene2.add(model2);
@@ -459,12 +466,11 @@ function onDocumentMouseDown(event) {
     // spotLight.position.set( x, 440, z);
 
 
-    // var models = [];
-    // models.push(model1);
-    // models.push(model2);
-    // models.push(model3);
-    // models.push(model4);
-    // console.log(scene1.children);
+    
+    models.push(model1);
+    models.push(model2);
+    models.push(model3);
+    models.push(model4);
     // console.log(models);
 
     var scenes = [];
@@ -475,98 +481,93 @@ function onDocumentMouseDown(event) {
     // console.log(scene1.children);
     // console.log(scenes);
 
+    var pointLights = [];
+    pointLights.push(pointLight1);
+    pointLights.push(pointLight2);
+    pointLights.push(pointLight3);
+    pointLights.push(pointLight4);
+    // console.log(pointLights);
+
     raycaster.setFromCamera(mouse, camera);
   
 
-    // var intersects = raycaster.intersectObjects(models, true);
-    var intersects = raycaster.intersectObjects(scenes, true);
+    var intersects = raycaster.intersectObjects(models, true);
+    // var intersects = raycaster.intersectObjects(pointLights, true);
   
   
-    // if (intersects.length > 0) {
-    //   intersects.forEach((intersect) => {
-    //     // intersect.object.material.color.setHex(Math.random() * 0xffffff);
-    //     console.log(intersect)
-    //   });
-    // }
+    if (intersects.length > 0) {
+      intersects.forEach((intersect) => {
+        // intersect.object.material.color.setHex(Math.random() * 0xffffff);
+        console.log(intersect)
 
-    if ( intersects.length > 0 ) {
+        intersect.object.currentHex = intersect.object.material.emissive.getHex();
+        intersect.object.material.emissive.setHex( 0xffffa9 );
+        intersect.object.material.emissiveIntensity = .2;
+      });
+    }
 
-        if ( INTERSECTED != intersects[ 0 ].object ) {
+    // if ( intersects.length > 0 ) {
 
-            if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+    //     if ( INTERSECTED != intersects[ 0 ].object ) {
 
-            INTERSECTED = intersects[ 0 ].object;
-            // INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-            // INTERSECTED.material.emissive.setHex( 0xffffa9 );
-            // INTERSECTED.material.emissiveIntensity = .2;
-            // console.log(intersects)
-            // intersects[0].point.visible = false
-            console.log(INTERSECTED.id)
+    //         // if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
-            if(INTERSECTED.id === 95 ){
-                pointLight4.intensity = 1.6
-                room3Info.style.opacity = 1
+    //         INTERSECTED = intersects[ 0 ].object;
+    //         INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+    //         INTERSECTED.material.emissive.setHex( 0xffffa9 );
+    //         INTERSECTED.material.emissiveIntensity = .2;
 
-                pointLight3.intensity = 0
-                room1Info.style.opacity = 0
+    //         // if(!isIntersectedMaterial1Selected){
+    //         //     isIntersectedMaterial1Selected = true
+    //         // }
 
-                pointLight1.intensity = 0
-                room2Info.style.opacity = 0
+    //         // else if(isIntersectedMaterial1Selected){
+    //         //     INTERSECTED.material.emissive.setHex( 0xffffa9 );
+    //         //     INTERSECTED.material.emissiveIntensity = 0;
+    //         //     isIntersectedMaterial1Selected = false
+    //         // }
 
-                pointLight2.intensity = 0
-                room4Info.style.opacity = 0
-            }
-            else if(INTERSECTED.id === 94 ){
-                pointLight3.intensity = 1.6
-                room1Info.style.opacity = 1
 
-                pointLight4.intensity = 0
-                room3Info.style.opacity = 0
 
-                pointLight1.intensity = 0
-                room2Info.style.opacity = 0
-                
-                pointLight2.intensity = 0
-                room4Info.style.opacity = 0
-            }
-            else if(INTERSECTED.id === 92 ){
-                pointLight1.intensity = 1.6
-                room2Info.style.opacity = 1
 
-                pointLight4.intensity = 0
-                room3Info.style.opacity = 0
+    //         // console.log(intersects[0])
+    //         // intersects[0].intensity = 0
 
-                pointLight3.intensity = 0
-                room1Info.style.opacity = 0
 
-                pointLight2.intensity = 0
-                room4Info.style.opacity = 0
-            }
-            else if(INTERSECTED.id === 93 ){
-                pointLight2.intensity = 1.6
-                room4Info.style.opacity = 1
+    //         // console.table(INTERSECTED.material.map)
+    //         // console.log(models)
+    //         // console.log(INTERSECTED)
+    //         // console.log(models)
+    //         // console.log(intersects)
 
-                pointLight3.intensity = 0
-                room1Info.style.opacity = 0
+    //         // pointLight3.intensity = 0
+    //         // room1Info.style.opacity = 1
 
-                pointLight1.intensity = 0
-                room2Info.style.opacity = 0
+    //         // if(intersects[0].distance <= 900 ){
+    //         //     pointLight4.intensity = 0
+    //         //     room3Info.style.opacity = 1
+    //         // }
+    //         // else if(intersects[0].distance >= 900 && intersects[0].distance <= 990 ){
+    //         //     pointLight3.intensity = 0
+    //         //     room1Info.style.opacity = 1
+    //         // }
+    //         // else if(intersects[0].distance >= 1000 ){
+    //         //     pointLight1.intensity = 0
+    //         //     room2Info.style.opacity = 1
+    //         // }
 
-                pointLight4.intensity = 0
-                room3Info.style.opacity = 0
-            }
 
 
             
-        }
+    //     }
 
-    } else {
+    // } else {
 
-        if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+    //     if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
-        INTERSECTED = null;
+    //     INTERSECTED = null;
 
-    }
+    // }
   }
   
 
