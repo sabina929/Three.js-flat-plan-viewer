@@ -450,13 +450,10 @@ function onDocumentMouseDown(event) {
     mouse.z = (event.clientY / window.innerHeight) * 2 + 1;
     // console.log(mouse)
 
-    // x= mouse.x*500
-    // y= mouse.y*500
-    // z= mouse.z*500
-    // pointLight.position.set( x, 100, 15 );
-    // spotLight.position.set( x, 440, -5 );
-    // pointLight.position.set( x, 100,z );
-    // spotLight.position.set( x, 440, z);
+    x= mouse.x
+    y= mouse.y
+    z= mouse.z
+    
 
 
     // var models = [];
@@ -493,19 +490,19 @@ function onDocumentMouseDown(event) {
 
         if ( INTERSECTED != intersects[ 0 ].object ) {
 
-            if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+            // if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
             INTERSECTED = intersects[ 0 ].object;
-            // INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-            // INTERSECTED.material.emissive.setHex( 0xffffa9 );
-            // INTERSECTED.material.emissiveIntensity = .2;
+            
             // console.log(intersects)
-            // intersects[0].point.visible = false
-            console.log(INTERSECTED.id)
+            // console.log(INTERSECTED.id)
 
             if(INTERSECTED.id === 95 ){
                 pointLight4.intensity = 1.6
                 room3Info.style.opacity = 1
+                room3Info.style.transform =  `translate(${x}%,${y}%,${z})`;
+                // room3Info.style.left = `${x}`;
+               
 
                 pointLight3.intensity = 0
                 room1Info.style.opacity = 0
@@ -519,6 +516,9 @@ function onDocumentMouseDown(event) {
             else if(INTERSECTED.id === 94 ){
                 pointLight3.intensity = 1.6
                 room1Info.style.opacity = 1
+                // room1Info.style.top = `${y}`;
+                // room1Info.style.left = `${x}`;
+                room1Info.style.transform =  `translate(${x}%,${y}%,${z})`;
 
                 pointLight4.intensity = 0
                 room3Info.style.opacity = 0
@@ -532,6 +532,9 @@ function onDocumentMouseDown(event) {
             else if(INTERSECTED.id === 92 ){
                 pointLight1.intensity = 1.6
                 room2Info.style.opacity = 1
+                // room2Info.style.top = `${y}`;
+                // room2Info.style.left = `${x}`;
+                room2Info.style.transform =  `translate(${x}%,${y}%,${z})`;
 
                 pointLight4.intensity = 0
                 room3Info.style.opacity = 0
@@ -545,6 +548,9 @@ function onDocumentMouseDown(event) {
             else if(INTERSECTED.id === 93 ){
                 pointLight2.intensity = 1.6
                 room4Info.style.opacity = 1
+                // room4Info.style.top = `${y}`;
+                // room4Info.style.left = `${x}`;
+                room4Info.style.transform =  `translate(${x}%,${y}%,${z})`;
 
                 pointLight3.intensity = 0
                 room1Info.style.opacity = 0
@@ -562,7 +568,7 @@ function onDocumentMouseDown(event) {
 
     } else {
 
-        if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+        // if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
         INTERSECTED = null;
 
