@@ -1,14 +1,10 @@
-let container1;
-let container2;
-let container3;
-let container4;
+let container;
 let scene1;
 let scene2;
 let scene3;
 let scene4;
 let camera;
 let renderer;
-// let model;
 let controls;
 let models = [];
 var model1, model2, model3, model4;
