@@ -456,14 +456,6 @@ function onDocumentMouseDown(event) {
     z= mouse.z
     
 
-
-    // var models = [];
-    // models.push(model1);
-    // models.push(model2);
-    // models.push(model3);
-    // models.push(model4);
-    // console.log(models);
-
     var scenes = [];
     scenes.push(scene1);
     scenes.push(scene2);
@@ -478,8 +470,7 @@ function onDocumentMouseDown(event) {
     // var intersects = raycaster.intersectObjects(models, true);
     var intersects = raycaster.intersectObjects(scenes, true);
   
-  
-    
+   
 
     if ( intersects.length > 0 ) {
 
