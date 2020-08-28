@@ -485,76 +485,78 @@ function onDocumentMouseDown(event) {
 
         if ( INTERSECTED != intersects[ 0 ].object ) {
 
-
-            INTERSECTED = intersects[ 0 ].object;
-            
-            // console.log(intersects)
-            // console.log(INTERSECTED.id)
-
-            if(INTERSECTED.id === 95 ){
-                pointLight4.intensity = 1.5
-                room3Info.style.opacity = 1
-                room3Info.style.transform =  `translate(${x}%,${y}%,${z})`;
-                // room3Info.style.left = `${x}`;
-               
-
-                pointLight3.intensity = 0
-                room1Info.style.opacity = 0
-
-                pointLight1.intensity = 0
-                room2Info.style.opacity = 0
-
-                pointLight2.intensity = 0
-                room4Info.style.opacity = 0
-            }
-            else if(INTERSECTED.id === 94 ){
-                pointLight3.intensity = 1.5
-                room1Info.style.opacity = 1
-                // room1Info.style.top = `${y}`;
-                // room1Info.style.left = `${x}`;
-                room1Info.style.transform =  `translate(${x}%,${y}%,${z})`;
-
-                pointLight4.intensity = 0
-                room3Info.style.opacity = 0
-
-                pointLight1.intensity = 0
-                room2Info.style.opacity = 0
+          
                 
-                pointLight2.intensity = 0
-                room4Info.style.opacity = 0
-            }
-            else if(INTERSECTED.id === 92 ){
-                pointLight1.intensity = 1.5
-                room2Info.style.opacity = 1
-                // room2Info.style.top = `${y}`;
-                // room2Info.style.left = `${x}`;
-                room2Info.style.transform =  `translate(${x}%,${y}%,${z})`;
-
-                pointLight4.intensity = 0
-                room3Info.style.opacity = 0
-
-                pointLight3.intensity = 0
-                room1Info.style.opacity = 0
-
-                pointLight2.intensity = 0
-                room4Info.style.opacity = 0
-            }
-            else if(INTERSECTED.id === 93 ){
-                pointLight2.intensity = 1.5
-                room4Info.style.opacity = 1
-                // room4Info.style.top = `${y}`;
-                // room4Info.style.left = `${x}`;
-                room4Info.style.transform =  `translate(${x}%,${y}%,${z})`;
-
-                pointLight3.intensity = 0
-                room1Info.style.opacity = 0
-
-                pointLight1.intensity = 0
-                room2Info.style.opacity = 0
-
-                pointLight4.intensity = 0
-                room3Info.style.opacity = 0
-            }
+                INTERSECTED = intersects[ 0 ].object;
+                
+                // console.log(intersects)
+                // console.log(INTERSECTED.id)
+    
+                if(INTERSECTED.id === 95 ){
+                    pointLight4.intensity = 1.5
+                    room3Info.style.opacity = 1
+                    room3Info.style.transform =  `translate(${x}%,${y}%,${z})`;
+                    // room3Info.style.left = `${x}`;
+                   
+    
+                    pointLight3.intensity = 0
+                    room1Info.style.opacity = 0
+    
+                    pointLight1.intensity = 0
+                    room2Info.style.opacity = 0
+    
+                    pointLight2.intensity = 0
+                    room4Info.style.opacity = 0
+                }
+                else if(INTERSECTED.id === 94 ){
+                    pointLight3.intensity = 1.5
+                    room1Info.style.opacity = 1
+                    // room1Info.style.top = `${y}`;
+                    // room1Info.style.left = `${x}`;
+                    room1Info.style.transform =  `translate(${x}%,${y}%,${z})`;
+    
+                    pointLight4.intensity = 0
+                    room3Info.style.opacity = 0
+    
+                    pointLight1.intensity = 0
+                    room2Info.style.opacity = 0
+                    
+                    pointLight2.intensity = 0
+                    room4Info.style.opacity = 0
+                }
+                else if(INTERSECTED.id === 92 ){
+                    pointLight1.intensity = 1.5
+                    room2Info.style.opacity = 1
+                    // room2Info.style.top = `${y}`;
+                    // room2Info.style.left = `${x}`;
+                    room2Info.style.transform =  `translate(${x}%,${y}%,${z})`;
+    
+                    pointLight4.intensity = 0
+                    room3Info.style.opacity = 0
+    
+                    pointLight3.intensity = 0
+                    room1Info.style.opacity = 0
+    
+                    pointLight2.intensity = 0
+                    room4Info.style.opacity = 0
+                }
+                else if(INTERSECTED.id === 93 ){
+                    pointLight2.intensity = 1.5
+                    room4Info.style.opacity = 1
+                    // room4Info.style.top = `${y}`;
+                    // room4Info.style.left = `${x}`;
+                    room4Info.style.transform =  `translate(${x}%,${y}%,${z})`;
+    
+                    pointLight3.intensity = 0
+                    room1Info.style.opacity = 0
+    
+                    pointLight1.intensity = 0
+                    room2Info.style.opacity = 0
+    
+                    pointLight4.intensity = 0
+                    room3Info.style.opacity = 0
+                }
+            
 
 
             
@@ -562,7 +564,18 @@ function onDocumentMouseDown(event) {
 
     } else {
 
+        if ( INTERSECTED ) {
+            pointLight4.intensity = 0
+            room3Info.style.opacity = 0
+            pointLight3.intensity = 0
+            room1Info.style.opacity = 0
 
+            pointLight1.intensity = 0
+            room2Info.style.opacity = 0
+
+            pointLight2.intensity = 0
+            room4Info.style.opacity = 0
+        }
         INTERSECTED = null;
 
     }
