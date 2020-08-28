@@ -485,8 +485,6 @@ function onDocumentMouseDown(event) {
 
         if ( INTERSECTED != intersects[ 0 ].object ) {
 
-          
-                
                 INTERSECTED = intersects[ 0 ].object;
                 
                 // console.log(intersects)
@@ -557,13 +555,9 @@ function onDocumentMouseDown(event) {
                     room3Info.style.opacity = 0
                 }
             
-
-
-            
         }
 
     } else {
-
         if ( INTERSECTED ) {
             pointLight4.intensity = 0
             room3Info.style.opacity = 0
@@ -576,6 +570,7 @@ function onDocumentMouseDown(event) {
             pointLight2.intensity = 0
             room4Info.style.opacity = 0
         }
+      
         INTERSECTED = null;
 
     }
